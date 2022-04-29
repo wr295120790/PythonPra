@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from random import randint
 
 squares = [1,3,4,10,21,26,66,77]
 squares01 = [2,4,6,8,10,22,24,25]
@@ -81,10 +82,29 @@ plt.xticks(x,('jin','liu','wang'))
 plt.yticks(np.arange(0,300,30))
 plt.show()
 
+#8、csv文件绘制图表
+import csv
 
+fn='练习文件/天气变化.csv'
+with open(fn) as csvFile:
+    csvReader = csv.reader(csvFile)
+    headerRow = next(csvReader)
+    hight,lower=[],[]
+    for row in csvReader:
+        hight.append(row[1])
+        lower.append(row[3])
+print('最高温：',hight)
+print('最低温：',lower)        
+for i,header in enumerate(headerRow):  #列出文件的标题  
+    print(i,header)
 
-
-
+plt.plot(hight)
+plt.title('Weather')
+plt.xlabel('',fontsize=14)
+plt.ylabel('Temoer',fontsize=14)
+plt.tick_params(axis='both',labelsize=12,color='r')
+plt.figure(dpi=80,figsize=(12,30)) #
+plt.show()    
 
 
 
